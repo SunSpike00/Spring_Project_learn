@@ -76,7 +76,7 @@ public class UserController {
 	};
 
 
-  // 좌측 메뉴 클릭시 보드화면 이동 (로그인된 상태)
+	// 좌측 메뉴 클릭시 보드화면 이동 (로그인된 상태)
 	@RequestMapping(value = "bdList")
 	public ModelAndView bdList() { 
 		ModelAndView mav = new ModelAndView();
@@ -84,6 +84,17 @@ public class UserController {
 		System.out.println("items ==> "+ items);
 		mav.addObject("items", items);
 		mav.setViewName("board/boardList.html");
+		return mav; 
+	}
+	
+	// 책 소개 페이지로 이동 (로그인된 상태)
+	@RequestMapping(value = "bkList")
+	public ModelAndView bkList() { 
+		ModelAndView mav = new ModelAndView();
+		List<BoardListDomain> items = uploadService.boardList();	// 수정
+		System.out.println("items ==> "+ items);
+		mav.addObject("items", items);
+		mav.setViewName("board/boardList.html");					// 수정
 		return mav; 
 	}
 }
