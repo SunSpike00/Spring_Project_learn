@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.co.kr.mapper.BookUploadMapper">
+
+	<!-- select all -->
+	<select id="bookList" resultType="com.co.kr.domain.BookListDomain">
+		select b.bk_id, b.mb_id, b.bk_title, g.genre_name, b.bk_content, b.bk_create_at, b.bk_update_at
+		from jsp.book_board as b, jsp.genre as g
+		where b.genre_id = g.genre_id
+		order by bk_update_at desc
+	</select>
+
+</mapper>
