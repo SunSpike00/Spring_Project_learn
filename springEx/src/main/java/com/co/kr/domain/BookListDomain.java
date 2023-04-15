@@ -2,9 +2,13 @@ package com.co.kr.domain;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Data
-@Builder(builderMethodName = "builder")
+@Getter
+@Setter
+@Builder(builderMethodName = "bk_builder")
 public class BookListDomain {
 
 	//도서 정보 목록

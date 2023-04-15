@@ -1,0 +1,68 @@
+<div  class="userInfo" th:if=${session.id}>
+    <span th:text="${session.id}"></span><span> 님 / </span>
+    <span th:text="${session.mbLevel}"></span><span> 레벨</span>
+    <button type="button">
+        <a th:href="@{logout}" style="color: #fff">로그아웃</a>
+    </button>
+</div>
+
+<div class="title" style="color:#00a2be">도서 리스트</div>
+<form role="form" th:object=${bookListVO} th:action="@{bookEditSave}" method="post" enctype="multipart/form-data">
+    <div class="section form">
+       <table>
+        <colgroup>
+            <col style="width:10%"/>
+            <col style="width:90%"/>
+            <col style="width:20%"/>
+            <col style="width:10%"/>
+        </colgroup>
+        <tbody>
+            <tr> 
+	            <th>제목</th>
+                <td>
+                    <input type="hidden" th:field="*{bkId}" />
+                    <input type="hidden" th:field="*{isEdit}"/>
+                    <input type="text" th:field="*{bkTitle}" placeholder="제목" required/>
+                    
+                </td>
+            </tr>
+            <tr>
+                <th>장르</th>
+            	<td>
+            	    <select name="bkGenre" id="bkGenre">
+            	    <th:block th:each="bkSelect : ${bkSelect}">
+                    	<option
+                    	th:value="${bkSelect.genre_id}"
+                    	th:text="${bkSelect.genre_name}"
+                    	th:selected="${bkSelect.genre_id} == ${genreCode.genre_id}">
+                    	</option>
+                    	</th:block>
+                    </select>
+            	</td>
+            </tr>
+            <tr> 
+               <th>내용</th>
+                <td >
+                   <textarea colspan="2" id="story" th:field="*{bkContent}" placeholder="내용을 적어주세요." rows="5" cols="200" required></textarea>
+                </td>
+            </tr>
+            <tr> 
+               <th><label for="file">첨부파일</label></th>
+                <td>
+                    <input type="file" id="bookFile" name="bookFiles" multiple />
+                </td>
+            </tr>
+            <tr>
+            	<th>주의</th>
+                <td>
+                	<span style="color: #00a2be" th:text="'*새로 파일첨부시 기존 파일은 삭제됩니다.(첨부된 파일 : '+ ${bookFileLen} + '개)'"></span>
+                </td>
+            </tr>
+        </tbody>
+       </table>
+       <div class="button">
+            <button type="submit" style="margin-right: 11px">내용수정</button>
+       </div>
+    </div>
+
+</form>

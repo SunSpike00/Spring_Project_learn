@@ -11,11 +11,13 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.co.kr.domain.BoardListDomain;
 import com.co.kr.domain.BookListDomain;
+import com.co.kr.domain.BookSelectDomain;
 import com.co.kr.domain.LoginDomain;
 import com.co.kr.service.BookUploadService;
 import com.co.kr.service.UploadService;
@@ -96,7 +98,9 @@ public class UserController {
 	@RequestMapping(value = "bkList")
 	public ModelAndView bkList() { 
 		ModelAndView mav = new ModelAndView();
-		List<BookListDomain> items = bookUploadService.bookList();	// 수정
+		List<BookListDomain> items = bookUploadService.bookList();
+		List<BookSelectDomain> bkSelect = bookUploadService.bookSelect();
+		mav.addObject("bkSelect", bkSelect);// 수정		
 		System.out.println("items ==> "+ items);
 		mav.addObject("items", items);
 		mav.setViewName("book/bookList.html");					// 수정
