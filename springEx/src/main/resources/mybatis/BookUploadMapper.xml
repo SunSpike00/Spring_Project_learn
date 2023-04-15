@@ -10,5 +10,87 @@
 		where b.genre_id = g.genre_id
 		order by bk_update_at desc
 	</select>
-
+	
+	<!-- genre select -->
+	<select id="bookSelect" resultType="com.co.kr.domain.BookSelectDomain">
+		select genre_id, genre_name
+		from jsp.genre
+	</select>
+	
+	<!-- content insert -->
+	<insert id="bookContentUpload" parameterType="com.co.kr.domain.BookContentDomain"
+	useGeneratedKeys="true" keyProperty="bkId" keyColumn="bk_id">
+        INSERT INTO jsp.book_board (mb_id, bk_title, genre_id, bk_content)
+        VALUES(#{mbId}, #{bkTitle}, #{bkGenre}, #{bkContent})
+        
+	</insert>
+	
+	<!-- file insert -->
+	<insert id="bookFileUpload" parameterType="com.co.kr.domain.BookFileDomain">
+        INSERT INTO jsp.book_files (
+            bk_id,
+            mb_id,   
+            bk_original_file_name,                         
+            bk_new_file_name,
+            bk_file_path,                                   
+            bk_file_size
+        )
+        VALUES (
+            #{bkId},
+            #{mbId},
+            #{bkOriginalFileName},
+            #{bkNewFileName},
+            #{bkFilePath},
+            #{bkFileSize}
+        )
+    </insert>
+    
+	<!-- Content update -->
+	<update id="bkContentUpdate" parameterType="com.co.kr.domain.BookContentDomain">
+        UPDATE jsp.book_board SET
+                bk_id=#{bkId},
+                mb_id=#{mbId},
+                bk_title=#{bkTitle},
+                genre_id=#{bkGenre},
+                bk_content=#{bkContent},
+                bk_update_at=now()  
+        WHERE bk_id=#{bkId}
+    </update>
+	
+	<!-- file update -->
+    <update id="bkFileUpdate" parameterType="com.co.kr.domain.BookFileDomain">
+        UPDATE jsp.book_files SET
+                bk_id=#{bkId},
+                mb_id=#{mbId},
+                bk_original_file_name=#{bkOriginalFileName},
+                bk_new_file_name=#{bkNewFileName}, 
+                bk_file_path=#{bkFilePath},
+                bk_file_size=#{bkFileSize}
+        WHERE bk_id=#{bkId}
+    </update>
+	
+	<!-- Content delete -->
+    <delete id="bkContentRemove" parameterType="hashMap">
+       DELETE FROM jsp.book_board WHERE bk_id=#{bkId}
+    </delete>
+    
+	<!-- file delete -->
+    <delete id="bkFileRemove" parameterType="com.co.kr.domain.BookFileDomain">
+	    DELETE FROM jsp.book_files WHERE bk_new_file_name = #{bkNewFileName}
+	</delete>
+	
+	<!-- content -->
+	<select id="bookSelectOne" resultType="com.co.kr.domain.BookListDomain" parameterType="map">
+	    SELECT bk_id, mb_id, bk_title, genre_id, bk_content, bk_create_at, bk_update_at
+	    FROM jsp.book_board
+	    where bk_id = #{bkId}
+	</select>
+	
+	<!-- file -->
+	<select id="bookSelectOneFile" resultType="com.co.kr.domain.BookFileDomain" parameterType="map">
+	    SELECT bk_id, mb_id, bk_original_file_name, bk_new_file_name, bk_file_path, bk_file_size
+	    FROM jsp.book_files
+	    where bk_id = #{bkId}
+	</select>
+	
 </mapper>

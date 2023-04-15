@@ -2,8 +2,8 @@
     <table>
         <th:block th:if="${items}">
             <colgroup>
-                <col style="width: 5%"/>
-                <col style="width: 30%"/>
+                <col style="width: 10%"/>
+                <col style="width: 25%"/>
                 <col style="width: 10%"/>
                 <col style="width: 10%"/>
                 <col style="width: 15%"/>
@@ -23,7 +23,7 @@
             <tbody>
               <tr th:each="item : ${items}">
                   <td th:text="${item.bkId}"></td>
-                  <td><a th:text="${item.bkTitle}" th:href="@{/detail(bkId = ${item.bkId})}"></a></td>
+                  <td><a th:text="${item.bkTitle}" th:href="@{/bookDetail(bkId = ${item.bkId})}"></a></td>
                   <td th:text="${item.bkGenre}"></td>
                   <td th:text="${item.mbId}"></td>
                   <td th:text="${item.bkCreateAt}"></td>
@@ -33,25 +33,26 @@
         </tbody>
     </table>
     
-    <th:block th:if="${detail}">   
-        <h1 style="padding: 30px 0;" th:text="${detail.bdTitle}"></h1>
+    <th:block th:if="${bookDetail}">   
+        <h1 style="padding: 30px 0;" th:text="${bookDetail.bkTitle}"></h1>
         <div style="text-align: right;">
-            <span style="color: #00a2be;">글번호 </span> <span th:text="${detail.bdSeq}"></span> <span style="color: #00a2be"> | </span>
-            <span style="color: #00a2be">글쓴이 </span> <span th:text="${detail.mbId}"></span> <span style="color: #00a2be"> | </span> 
-            <span th:text="${detail.bdCreateAt}"></span> <span style="color: #00a2be"> | </span> 
-            <span th:text="${detail.bdUpdateAt}"></span> 
+            <span style="color: #00a2be;">도서번호 </span> <span th:text="${bookDetail.bkId}"></span> <span style="color: #00a2be"> | </span>
+            <span style="color: #00a2be">장르 </span> <span th:text="${genreCode.genre_name}"></span> <span style="color: #00a2be"> | </span> 
+            <span style="color: #00a2be">글쓴이 </span> <span th:text="${bookDetail.mbId}"></span> <span style="color: #00a2be"> | </span> 
+            <span th:text="${bookDetail.bkCreateAt}"></span> <span style="color: #00a2be"> | </span> 
+            <span th:text="${bookDetail.bkUpdateAt}"></span> 
         </div>
         
         <div>
-            <p style="padding: 30px 0;" th:text="${detail.bdContent}"></p>
-            <ul th:if="${files}"  th:each="file : ${files}" style="display: inline-block;margin-bottom: 5px;">
-                <li> <img id="imgId" th:src="@{${file.upNewFileName}}" alt="첨부이미지" height="280" /></li>
+            <ul th:if="${bookFiles}"  th:each="bookFile : ${bookFiles}" style="display: inline-block;margin-bottom: 5px;">
+                <li> <img id="imgId" th:src="@{${bookFile.bkNewFileName}}" alt="첨부이미지" width="150" height="150" /></li>
             </ul>
+            <p style="padding: 30px 0;" th:text="${bookDetail.bkContent}"></p>
         </div>
-
+        
         <div style="padding: 30px 0; text-align:right;">
-		    <a th:href="@{/edit(bdSeq = ${detail.bdSeq})}"><button>수정</button></a>
-            <a th:href="@{/remove(bdSeq = ${detail.bdSeq})}"><button>삭제</button></a>
+		    <a th:href="@{/bookEdit(bkId = ${bookDetail.bkId})}"><button>수정</button></a>
+            <a th:href="@{/bookRemove(bkId = ${bookDetail.bkId})}"><button>삭제</button></a>
             <a th:href="@{bkList}"><button style="background-color: #00a2be; color: white; margin-left: 20px">목록으로</button></a>
         </div>
         
