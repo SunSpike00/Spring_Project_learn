@@ -5,16 +5,14 @@
            <div class="logo">
                 <a th:href="@{bdList}"> <span>SpringBoot</span> <span>STUDY</span></a>
            </div>
-           
-           <div class="useInfo">
-               <span>genie</span>
-           </div>
-           
+		   <div class="useInfo">
+		   		<span>Cha</span>
+		   </div>
            <ul class="nav">
-               <th:block>
-<!--               <th:block th:if="${session.userAuth}==3"> 쿼리스트링보내기-->
-                   <li class="on"><a class="menu1" href="#">맴버정보</a></li>
+               <th:block th:if="${session.mbLevel}==3">
+                   <li class="on"><a class="menu1" th:href="@{mbList(page=1)}">맴버정보</a></li>
                </th:block>
+               <!-- 3레벨 권한 추가해서 장르 추가 페이지 -->
                <th:block>
                    <li class="on"><a class="menu1" th:href="@{bdList}">보드정보</a></li>
                </th:block>

@@ -12,9 +12,9 @@ public class LoginDomain {
 	private Integer mbSeq;
 	private String mbId;
 	private String mbPw;
-	private String mbLevel;
+	private String mbLevel;		// 기본 값 2
 	private String mbIp;
-	private String mbUse;
+	private String mbUse;		// 기본 값 Y
 	private String mbCreateAt;
 	private String mbUpdateAt;
 	
