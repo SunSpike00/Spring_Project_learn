@@ -16,7 +16,7 @@ import com.co.kr.vo.BookListVO;
 public interface BookUploadService {
 
 	// 기능 명시
-	
+
 	// 리스트 조회
 	public List<BookListDomain> bookList();
 	

@@ -33,7 +33,7 @@
         </tbody>
     </table>
     
-    <th:block th:if="${bookDetail}">   
+    <th:block th:if="${bookDetail}">
         <h1 style="padding: 30px 0;" th:text="${bookDetail.bkTitle}"></h1>
         <div style="text-align: right;">
             <span style="color: #00a2be;">도서번호 </span> <span th:text="${bookDetail.bkId}"></span> <span style="color: #00a2be"> | </span>
@@ -45,14 +45,16 @@
         
         <div>
             <ul th:if="${bookFiles}"  th:each="bookFile : ${bookFiles}" style="display: inline-block;margin-bottom: 5px;">
-                <li> <img id="imgId" th:src="@{${bookFile.bkNewFileName}}" alt="첨부이미지" width="150" height="150" /></li>
+                <li> <img id="imgId" th:src="@{${bookFile.bkNewFileName}}" alt="첨부이미지" width="300" height="300" /></li>
             </ul>
             <p style="padding: 30px 0;" th:text="${bookDetail.bkContent}"></p>
         </div>
         
         <div style="padding: 30px 0; text-align:right;">
+        	<th:block th:if="${bookDetail.mbId == session.id}">
 		    <a th:href="@{/bookEdit(bkId = ${bookDetail.bkId})}"><button>수정</button></a>
             <a th:href="@{/bookRemove(bkId = ${bookDetail.bkId})}"><button>삭제</button></a>
+            </th:block>
             <a th:href="@{bkList}"><button style="background-color: #00a2be; color: white; margin-left: 20px">목록으로</button></a>
         </div>
         

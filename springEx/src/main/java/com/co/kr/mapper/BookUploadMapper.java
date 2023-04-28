@@ -40,5 +40,5 @@ public interface BookUploadMapper {
 	public BookListDomain bookSelectOne(HashMap<String, Object> map);
 	//select one file
 	public List<BookFileDomain> bookSelectOneFile(HashMap<String, Object> map);
-
+	
 }

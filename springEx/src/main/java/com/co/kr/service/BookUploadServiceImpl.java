@@ -230,5 +230,4 @@ public class BookUploadServiceImpl implements BookUploadService  {
 	public List<BookFileDomain> bookSelectOneFile(HashMap<String, Object> map) {
 		return bookUploadMapper.bookSelectOneFile(map);
 	}
-	
 }

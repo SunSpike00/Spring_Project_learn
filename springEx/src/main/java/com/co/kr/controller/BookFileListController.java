@@ -46,7 +46,6 @@ public class BookFileListController {
 		int bkId = bookUploadService.bookUpload(bookListVO, request, httpReq);
 		bookListVO.setBkContent(""); //초기화
 		bookListVO.setBkTitle(""); //초기화
-		
 		// view setting
 		mav = bkSelectOneCall(bookListVO, String.valueOf(bkId),request);
 		mav.setViewName("book/bookList.html");

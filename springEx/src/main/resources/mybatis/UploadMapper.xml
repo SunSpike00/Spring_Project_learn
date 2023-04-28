@@ -53,7 +53,7 @@
                 mb_id=#{mbId},
                 bd_title=#{bdTitle},
                 bd_content=#{bdContent}, 
-                bd_update_at=now()  
+                bd_update_at=now()
         WHERE bd_seq=#{bdSeq}
     </update>
 
